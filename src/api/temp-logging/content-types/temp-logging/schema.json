@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "temp_loggings",
+  "info": {
+    "singularName": "temp-logging",
+    "pluralName": "temp-loggings",
+    "displayName": "tempLogging"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "response": {
+      "type": "json"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "userId": {
+      "type": "string"
+    }
+  }
+}

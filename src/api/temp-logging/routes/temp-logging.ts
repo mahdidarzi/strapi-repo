@@ -1,0 +1,7 @@
+/**
+ * temp-logging router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::temp-logging.temp-logging');
