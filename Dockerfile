@@ -2,29 +2,32 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-# install pnpm (if you use pnpm) or use npm
-RUN corepack enable && corepack prepare pnpm@8.8.0 --activate
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
 
-COPY package.json pnpm-lock.yaml* ./
-# copy backend code
+# Install dependencies with npm
+RUN npm ci
+
+# Copy the rest of the backend code
 COPY . .
 
-RUN pnpm install --frozen-lockfile
-RUN pnpm build
+# Build the project
+RUN npm run build
 
 # runtime stage
 FROM node:22-alpine AS runtime
 WORKDIR /app
 
 ENV NODE_ENV=production
-# copy only what's needed
+
+# Copy only what's needed from builder
 COPY --from=builder /app ./
 
-# create uploads folder
+# Create uploads folder
 RUN mkdir -p /srv/uploads
 
-# expose port
+# Expose port
 EXPOSE 1337
 
-# safe start
-CMD ["pnpm", "start"]
+# Start the app
+CMD ["npm", "start"]
