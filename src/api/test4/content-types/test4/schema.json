@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test4s",
+  "info": {
+    "singularName": "test4",
+    "pluralName": "test4s",
+    "displayName": "test4"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "test4": {
+      "type": "string"
+    }
+  }
+}
