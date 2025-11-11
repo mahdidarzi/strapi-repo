@@ -2,13 +2,13 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package.json  ./
+# Copy package.json only
+COPY package.json ./
 
-# Install dependencies with npm
-RUN npm ci
+# Install dependencies
+RUN npm install
 
-# Copy the rest of the backend code
+# Copy rest of the app
 COPY . .
 
 # Build the project
@@ -20,7 +20,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Copy only what's needed from builder
+# Copy build and necessary files
 COPY --from=builder /app ./
 
 # Create uploads folder
